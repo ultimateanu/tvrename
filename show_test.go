@@ -8,6 +8,7 @@ var tests = []struct {
 }{
 	{"house", Show{3908, "House", "US", 2004, 2012, 8}},
 	{"avatar", Show{2680, "Avatar: The Last Airbender", "US", 2005, 2008, 3}},
+	{"legend of korra", Show{26254, "The Legend of Korra", "US", 2012, 0, 3}},
 }
 
 func TestFindShow(t *testing.T) {

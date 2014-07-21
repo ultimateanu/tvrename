@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 )
 
 const findShowUrl string = "http://services.tvrage.com/feeds/search.php?show="
@@ -27,7 +28,7 @@ func (s Show) String() string {
 }
 
 func findShow(name string) ([]Show, error) {
-	res, err := getResource(findShowUrl + name)
+	res, err := getResource(findShowUrl + url.QueryEscape(name))
 	if err != nil {
 		return nil, err
 	}
