@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-	//fmt.Println(findShow("legend of korra$%"))
 	if len(os.Args) < 2 {
 		log.Fatal("usage: tvrename show_directory")
 	}
@@ -16,6 +15,16 @@ func main() {
 }
 
 func fixShowDir(dir string) {
-	//fmt.Println(filepath.Base(dir))
-	fmt.Println(findShow(filepath.Base(dir)))
+	shows, _ := findShow(filepath.Base(dir))
+
+	var showNames []string
+	for _, s := range shows {
+		showNames = append(showNames, s.String())
+	}
+
+	i, err := selectOption(showNames)
+	if err != nil {
+		log.Fatal("no matching show")
+	}
+	fmt.Println(shows[i])
 }

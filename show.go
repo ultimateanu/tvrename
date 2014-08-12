@@ -24,6 +24,9 @@ type Show struct {
 }
 
 func (s Show) String() string {
+	if s.Ended == 0 {
+		return fmt.Sprintf("%s [%d - ] (%s)", s.Name, s.Started, s.Country)
+	}
 	return fmt.Sprintf("%s [%d - %d] (%s)", s.Name, s.Started, s.Ended, s.Country)
 }
 
@@ -34,7 +37,7 @@ func findShow(name string) ([]Show, error) {
 	}
 
 	var r Results
-	err = xml.Unmarshal([]byte(res), &r)
+	err = xml.Unmarshal(res, &r)
 	if err != nil {
 		return nil, err
 	}
